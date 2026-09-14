@@ -1,0 +1,36 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Local Python environments and tooling
+.venv/
+venv/
+env/
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Datasets are downloaded separately and must not be committed.
+data/raw/
+data/processed/
+
+# Trained weights are large binary artifacts. Publish selected releases outside Git.
+models/official/
+models/ours/checkpoints/
+*.pth
+*.pt
+*.ckpt
+
+# Generated predictions, logs, and temporary files
+results/predictions/
+*.log
+*.tmp
+*.bak
+
+.vscode/
