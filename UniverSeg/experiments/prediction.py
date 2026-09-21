@@ -5,21 +5,11 @@ from pathlib import Path
 import torch
 import matplotlib.pyplot as plt
 
-
-# --------------------------------------------------
-# Paths
-# --------------------------------------------------
-
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 OFFICIAL_REPO = PROJECT_ROOT.parent / "UniverSeg-main"
 
 sys.path.insert(0, str(OFFICIAL_REPO))
 sys.path.insert(0, str(PROJECT_ROOT / "src"))
-
-
-# --------------------------------------------------
-# Imports
-# --------------------------------------------------
 
 from universeg import universeg
 
@@ -30,10 +20,6 @@ from datasets.camus import CAMUSDataset
 from datasets.pandental import PanDentalDataset
 from datasets.chaos import CHAOSDataset
 
-
-# --------------------------------------------------
-# Command-line arguments
-# --------------------------------------------------
 
 parser = argparse.ArgumentParser(
     description="Visualize UniverSeg prediction"
@@ -77,21 +63,11 @@ SUPPORT_INDICES = {
 
 support_indices = SUPPORT_INDICES[DATASET_NAME]
 
-
-# --------------------------------------------------
-# Device
-# --------------------------------------------------
-
 device = torch.device(
     "cuda" if torch.cuda.is_available() else "cpu"
 )
 
 print("Device:", device)
-
-
-# --------------------------------------------------
-# Load our trained UniverSeg model
-# --------------------------------------------------
 
 model = universeg(pretrained=False).to(device)
 
@@ -100,7 +76,7 @@ checkpoint_path = (
     / "models"
     / "ours"
     / "checkpoints"
-    / "universeg_improved_5000_steps.pth"
+    / "universeg_5000_steps.pth"
 )
 
 checkpoint = torch.load(
@@ -114,16 +90,8 @@ model.eval()
 print("Our UniverSeg model loaded successfully")
 
 
-# --------------------------------------------------
-# Dataset paths
-# --------------------------------------------------
-
 DATA_ROOT = PROJECT_ROOT / "data" / "raw"
 
-
-# --------------------------------------------------
-# Load selected dataset
-# --------------------------------------------------
 
 if DATASET_NAME == "OASIS":
 
@@ -173,10 +141,6 @@ print(
 )
 
 
-# --------------------------------------------------
-# Check query index
-# --------------------------------------------------
-
 if QUERY_INDEX < 0 or QUERY_INDEX >= len(dataset):
 
     raise ValueError(
@@ -184,10 +148,6 @@ if QUERY_INDEX < 0 or QUERY_INDEX >= len(dataset):
         f"Valid range: 0 to {len(dataset) - 1}"
     )
 
-
-# --------------------------------------------------
-# Check support indices
-# --------------------------------------------------
 
 for idx in support_indices:
 
@@ -198,10 +158,6 @@ for idx in support_indices:
             f"for {DATASET_NAME}"
         )
 
-
-# --------------------------------------------------
-# Prepare support set
-# --------------------------------------------------
 
 support_images = []
 support_labels = []
@@ -223,10 +179,6 @@ support_labels = torch.stack(
 ).unsqueeze(0).to(device)
 
 
-# --------------------------------------------------
-# Prepare query
-# --------------------------------------------------
-
 query_image, query_label = dataset[QUERY_INDEX]
 
 query_image = query_image.unsqueeze(0).to(device)
@@ -247,10 +199,6 @@ print(
 )
 
 
-# --------------------------------------------------
-# Run UniverSeg
-# --------------------------------------------------
-
 with torch.no_grad():
 
     prediction = model(
@@ -266,10 +214,6 @@ print(
 )
 
 
-# --------------------------------------------------
-# Convert prediction to binary mask
-# --------------------------------------------------
-
 probability = torch.sigmoid(
     prediction
 )
@@ -282,10 +226,6 @@ print(
     "Prediction converted to binary mask"
 )
 
-
-# --------------------------------------------------
-# Calculate Dice
-# --------------------------------------------------
 
 intersection = (
     pred_mask * query_label
@@ -308,10 +248,6 @@ print(
 )
 
 
-# --------------------------------------------------
-# Create output directory
-# --------------------------------------------------
-
 output_dir = (
     PROJECT_ROOT
     / "results"
@@ -323,20 +259,11 @@ output_dir.mkdir(
     exist_ok=True
 )
 
-
-# --------------------------------------------------
-# Output filename
-# --------------------------------------------------
-
 output_path = (
     output_dir
     / f"{DATASET_NAME}_query_{QUERY_INDEX}.png"
 )
 
-
-# --------------------------------------------------
-# Visualization
-# --------------------------------------------------
 
 plt.figure(
     figsize=(12, 4)
@@ -391,9 +318,6 @@ plt.axis("off")
 plt.tight_layout()
 
 
-# --------------------------------------------------
-# Save
-# --------------------------------------------------
 
 plt.savefig(
     output_path,
@@ -404,10 +328,5 @@ plt.savefig(
 print(
     f"Saved visualization: {output_path}"
 )
-
-
-# --------------------------------------------------
-# Display
-# --------------------------------------------------
 
 plt.show()
