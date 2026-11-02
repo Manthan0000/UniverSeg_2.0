@@ -1,0 +1,14 @@
+{
+  "run_name": "universeg_R0_base",
+  "steps": 8000,
+  "seed": 0,
+  "variable_n": false,
+  "aug": false,
+  "use_proto": false,
+  "param_count": 1182785,
+  "sec_per_step": 0.05574,
+  "total_train_time_sec": 445.92,
+  "peak_vram_mb": 275.02,
+  "checkpoint_path": "D:\\3rd year\\AI Paper\\UniverSeg\\models\\ours\\checkpoints\\universeg_R0_base_steps8000_seed0.pth",
+  "loss_csv_path": "D:\\3rd year\\AI Paper\\UniverSeg\\results\\logs\\universeg_R0_base_seed0_steps8000_loss.csv"
+}

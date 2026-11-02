@@ -1,0 +1,44 @@
+{
+  "universeg_R0_base": {
+    "run_name": "universeg_R0_base",
+    "steps": 8000,
+    "seed": 0,
+    "variable_n": false,
+    "aug": false,
+    "use_proto": false,
+    "param_count": 1182785,
+    "sec_per_step": 0.05574,
+    "total_train_time_sec": 445.92,
+    "peak_vram_mb": 275.02,
+    "checkpoint_path": "D:\\3rd year\\AI Paper\\UniverSeg\\models\\ours\\checkpoints\\universeg_R0_base_steps8000_seed0.pth",
+    "loss_csv_path": "D:\\3rd year\\AI Paper\\UniverSeg\\results\\logs\\universeg_R0_base_seed0_steps8000_loss.csv"
+  },
+  "universeg_R_only": {
+    "run_name": "universeg_R_only",
+    "steps": 8000,
+    "seed": 0,
+    "variable_n": true,
+    "aug": true,
+    "use_proto": false,
+    "param_count": 1182785,
+    "sec_per_step": 0.03911,
+    "total_train_time_sec": 312.89,
+    "peak_vram_mb": 514.4,
+    "checkpoint_path": "D:\\3rd year\\AI Paper\\UniverSeg\\models\\ours\\checkpoints\\universeg_R_only_steps8000_seed0.pth",
+    "loss_csv_path": "D:\\3rd year\\AI Paper\\UniverSeg\\results\\logs\\universeg_R_only_seed0_steps8000_loss.csv"
+  },
+  "universeg_R_B": {
+    "run_name": "universeg_R_B",
+    "steps": 8000,
+    "seed": 0,
+    "variable_n": true,
+    "aug": true,
+    "use_proto": true,
+    "param_count": 1190849,
+    "sec_per_step": 0.0655,
+    "total_train_time_sec": 523.98,
+    "peak_vram_mb": 537.84,
+    "checkpoint_path": "D:\\3rd year\\AI Paper\\UniverSeg\\models\\ours\\checkpoints\\universeg_R_B_steps8000_seed0.pth",
+    "loss_csv_path": "D:\\3rd year\\AI Paper\\UniverSeg\\results\\logs\\universeg_R_B_seed0_steps8000_loss.csv"
+  }
+}

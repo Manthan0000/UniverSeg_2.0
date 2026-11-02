@@ -1,0 +1,20 @@
+{
+  "Run1_Baseline": {
+    "params": 1182785,
+    "sec_per_step": 0.4306,
+    "peak_vram_mb": 514.4,
+    "est_8000_steps_min": 57.41
+  },
+  "Run2_RecipeR": {
+    "params": 1182785,
+    "sec_per_step": 0.2198,
+    "peak_vram_mb": 514.9,
+    "est_8000_steps_min": 29.31
+  },
+  "Run3_RecipeR_ModuleB": {
+    "params": 1190849,
+    "sec_per_step": 0.1158,
+    "peak_vram_mb": 537.84,
+    "est_8000_steps_min": 15.44
+  }
+}
